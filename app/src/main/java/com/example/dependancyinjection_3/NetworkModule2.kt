@@ -10,17 +10,16 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
-
-    val BASE_URL = "https://rickandmortyapi.com/api/"
+object NetworkModule2 {
+    private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
     @Provides
     @Singleton
-    fun provideUserService(): APIService {
+    fun provideEndpointService(): EndpointAPIService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(APIService::class.java)
+            .create(EndpointAPIService::class.java)
     }
 }
